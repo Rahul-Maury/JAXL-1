@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Sign-up form</title>
+
+  <link rel="stylesheet" href="../public/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1 class="brand"><span>Verify </span> OTP</h1>
+    <div class="wrapper animated bounceInLeft">
+      <div class="company-info">
+        <h3>Jaxl Innovation</h3>
+        
+      </div>
+      <div class="contact">
+        <span style="color:red">{{msg}}</span>
+        <h5 id="timer" style="color:red"></h5>
+        <form method="POST" action="verify">
+          <p>
+            <label>Enter otp</label>
+            <input type="text" name="otp" required>
+          </p>
+          
+          <p class="full">
+            <button type="submit" id="verify-btn">verify-OTP</button>
+          </p>
+
+        </form>
+        <br>
+        <form method="POST" action="resend">
+          <p class="full">
+            <button type="submit">Request Another otp</button>
+          </p>
+          
+      </div>
+    </div>
+  </div>
+  <script>
+    const myInterval = setInterval(myTimer, 1000);
+      function myStopFunction() {
+        clearInterval(myInterval);
+      }
+
+      let count = 30;
+      function myTimer() {
+        if (count == 0) {
+          myStopFunction();
+          document.getElementById("timer").innerHTML = "Please Resend OTP!!";
+          document.getElementById("verify-btn").disabled = true;
+           document.getElementById("verify-btn").style.background = '#ccfbf1';
+           document.getElementById("verify-btn").style.color= 'black';
+
+        }
+        document.getElementById("timer").innerHTML = 'Your otp will expire in '+count-- + ' sec';
+      }
+
+  </script>
+</body>
+</html>
